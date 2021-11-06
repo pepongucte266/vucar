@@ -1,0 +1,65 @@
+﻿name,carmodel,price,location,status,mfg,interiorColor,exteriorColor,gearbox,kilometer,link
+LANDROVER,RANGE ROVER,12500000000,HÀ NỘI,MỚI,2021,NÂU,XÁM,TỰ ĐỘNG,0,https://bonbanh.com/xe-landrover-range_rover-svautobiography-lwb-3.0-i6-2021-3377840
+LEXUS,LS,7830000000,HỒ CHÍ MINH,MỚI,2021,NÂU,XANH,TỰ ĐỘNG,0,https://bonbanh.com/xe-lexus-ls-500h-2021-3688060
+CHEVROLET,COLORADO,515000000,THÁI NGUYÊN,CŨ,2018,-,BẠC,TỰ ĐỘNG,38000,https://bonbanh.com/xe-chevrolet-colorado-lt-2.5l-4x2-at-2018-3993070
+MINI,COOPER,2049000000,HỒ CHÍ MINH,MỚI,2019,ĐEN,XANH,TỰ ĐỘNG,0,https://bonbanh.com/xe-mini-cooper-s-5dr-2019-2621197
+MERCEDES BENZ,C CLASS,599000000,HÀ NỘI,CŨ,2012,ĐEN,TRẮNG,TỰ ĐỘNG,0,https://bonbanh.com/xe-mercedes_benz-c_class-c300-amg-2012-4033867
+PORSCHE,MACAN,2499000000,HỒ CHÍ MINH,CŨ,2015,VÀNG,TRẮNG,TỰ ĐỘNG,44000,https://bonbanh.com/xe-porsche-macan-2.0-2015-3998678
+MITSUBISHI,PAJERO,380000000,HÀ NỘI,CŨ,2001,XÁM,XANH,SỐ TAY,20000,https://bonbanh.com/xe-mitsubishi-pajero-2.8-2001-3867466
+MAZDA,3,515000000,HÀ NỘI,CŨ,2017,GHI,TRẮNG,TỰ ĐỘNG,38000,https://bonbanh.com/xe-mazda-3-1.5-at-2017-3993931
+LEXUS,NX,2290000000,HỒ CHÍ MINH,CŨ,2018,NÂU,ĐEN,TỰ ĐỘNG,16000,https://bonbanh.com/xe-lexus-nx-300-2018-4001314
+MAZDA,3,745000000,HÀ NỘI,CŨ,2020,ĐEN,XANH,TỰ ĐỘNG,9999,https://bonbanh.com/xe-mazda-3-1.5l-sport-premium-2020-4034184
+MITSUBISHI,XPANDER,555000000,HÀ NỘI,MỚI,2021,VÀNG,TRẮNG,SỐ TAY,0,https://bonbanh.com/xe-mitsubishi-xpander-1.5-mt-2021-3226603
+LEXUS,ES,2540000000,HÀ NỘI,MỚI,2021,MÀU KHÁC,ĐEN,TỰ ĐỘNG,0,https://bonbanh.com/xe-lexus-es-250-2021-3254904
+MERCEDES BENZ,E CLASS,1750000000,HÀ NỘI,CŨ,2018,NÂU,ĐEN,TỰ ĐỘNG,29000,https://bonbanh.com/xe-mercedes_benz-e_class-e200-2018-3908305
+MERCEDES BENZ,GLC,2499000000,HỒ CHÍ MINH,MỚI,2021,ĐEN,ĐỎ,TỰ ĐỘNG,0,https://bonbanh.com/xe-mercedes_benz-glc-300-4matic-2021-3190302
+MITSUBISHI,XPANDER,637000000,HÀ NỘI,MỚI,2021,ĐEN,ĐỒNG,TỰ ĐỘNG,0,https://bonbanh.com/xe-mitsubishi-xpander-cross-1.5-at-2021-3328799
+HYUNDAI,TUCSON,777000000,HÀ NỘI,CŨ,2019,ĐEN,ĐEN,TỰ ĐỘNG,22000,https://bonbanh.com/xe-hyundai-tucson-2.0-ath-2019-3967951
+KIA,SORENTO,1143000000,HÀ NỘI,MỚI,2021,-,XANH,TỰ ĐỘNG,0,https://bonbanh.com/xe-kia-sorento-luxury-2.2-at-2021-3676255
+LANDROVER,RANGE ROVER,12500000000,HÀ NỘI,MỚI,2021,NÂU,ĐỎ,TỰ ĐỘNG,0,https://bonbanh.com/xe-landrover-range_rover-svautobiography-lwb-3.0-i6-2021-3371284
+LANDROVER,RANGE ROVER,12500000000,HÀ NỘI,MỚI,2021,NÂU,TRẮNG,TỰ ĐỘNG,0,https://bonbanh.com/xe-landrover-range_rover-svautobiography-lwb-3.0-i6-2021-3371990
+SUZUKI,XL_7_1,564000000,HỒ CHÍ MINH,MỚI,2021,,NHIỀU MÀU,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-suzuki-xl7-giam-cuc-soc-ho-tro-gop-cao-chi-can-130tr-lan-banh-xe-co-san-du-mau-giao-ngay-404570/
+TOYOTA,CAMRY,1029000000,HỒ CHÍ MINH,MỚI,2021,,ĐEN,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-toyota-camry-g-2021-du-mau-giao-ngay-289tr-co-xe-326540/
+HONDA,CIVIC,903000000,HỒ CHÍ MINH,MỚI,2021,,TRẮNG,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-giam-tm-khung-giao-som-sieu-pham-honda-civic-chi-voi-178-205tr-gia-khung-trong-thang-112021-401133/
+HONDA,CR_V,1118000000,HỒ CHÍ MINH,MỚI,2021,,XÁM,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-honda-cr-v-2021tang-thue-truoc-ba-nhan-xe-voi-250tr-tang-bhvc-goi-pk-duy-nhat-trong-thang-11-407144/
+HONDA,CR_V,1118000000,HỒ CHÍ MINH,MỚI,2021,,XÁM,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-honda-cr-v-2021tang-thue-truoc-ba-nhan-xe-voi-250tr-tang-bhvc-goi-pk-duy-nhat-trong-thang-11-406533/
+HONDA,CIVIC,789000000,HỒ CHÍ MINH,MỚI,2021,,TRẮNG,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-so-huu-civic-2021-chi-voi-178-205tr-duy-nhat-chi-co-tai-honda-o-to-sai-gon-vo-van-kiet-406795/
+HONDA,CR_V,1118000000,HỒ CHÍ MINH,MỚI,2021,,XÁM,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-honda-cr-v-2021tang-thue-truoc-ba-nhan-xe-voi-250tr-tang-bhvc-goi-pk-duy-nhat-trong-thang-11-407145/
+HONDA,HR_V,901000000,HỒ CHÍ MINH,MỚI,2021,,CAM,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-tra-tm-177-193tr-so-huu-ngay-sieu-pham-hr-v-mua-xe-trung-xe-duy-nhat-thang-112021-389124/
+PORSCHE,718,4899000000,HỒ CHÍ MINH,MỚI,2021,,VÀNG,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-xe-moi-100-porsche-718-cayman-co-san-giao-ngay-gia-tot-lien-he-0947737172-thanh-415084/
+HONDA,BRIO,448000000,HỒ CHÍ MINH,MỚI,2021,,VÀNG,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-honda-brio-tang-goi-km-khung-chuc-trieu-voi-110tr-nhan-xe-ngay-tan-noi-lh-0901338826-399359/
+HONDA,CR_V,1118000000,HỒ CHÍ MINH,MỚI,2021,,XÁM,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-honda-cr-v-2021tang-thue-truoc-banhan-xe-voi-250tr-tang-bhvc-goi-pk-duy-nhat-trong-thang-11-406535/
+KIA,SONET,499000000,HỒ CHÍ MINH,MỚI,2021,,TRẮNG,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-kia-sonet-2021-suv-the-he-moi-lh0968919378-415089/
+TOYOTA,RUSH,634000000,HỒ CHÍ MINH,MỚI,2021,,TRẮNG,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-toyota-rush-2021-tang-1-nam-bao-hiem-than-xe-du-mau-giao-ngay-205tr-nhan-xe-lh-0932142022-331292/
+MERCEDES_BENZ,GLC200,1799000000,HỒ CHÍ MINH,MỚI,2021,,NHIỀU MÀU,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-mercedes-glc200-t112021-0909-300-351-lai-xuat-uu-dai-nhieu-qua-vip-387121/
+MERCEDES_BENZ,E180,1879000000,HỒ CHÍ MINH,CŨ,2020,,ĐỎ,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-e180-da-qua-su-dung-chinh-hang-dang-ki-2020-lh-0963260601-398244/
+HONDA,CR_V,1118000000,HỒ CHÍ MINH,MỚI,2020,,XANH DƯƠNG,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-nhan-xe-crv-2021-voi-250trtang-bhvc-goi-pk-km-khung-nhat-duy-nhat-trong-thang-11-397126/
+TOYOTA,FORTUNER,995000000,HỒ CHÍ MINH,MỚI,2020,,TRẮNG,SỐ TAY,0,https://www.carmudi.vn/ban-xe-o-to-toyota-fortuner-2021-du-mau-giao-ngay-255tr-co-xe-lh-0932142022-381151/
+SUZUKI,ERTIGA,517000000,HỒ CHÍ MINH,MỚI,2021,,MÀU KHÁC,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-xe-7-cho-ertiga-2021-gia-5-cho-bank-ho-tro-caochi-can-80-trieu-lan-banh-khong-can-chung-minh-thu-nap-404569/
+TOYOTA,INNOVA,750000000,HỒ CHÍ MINH,MỚI,2020,,BẠC,SỐ TAY,0,https://www.carmudi.vn/ban-xe-o-to-toyota-innova-2021-tang-3-nam-bao-duong-du-mau-giao-ngay-175tr-co-xe-lh-0932142022-326546/
+HONDA,CR_V,1118000000,HỒ CHÍ MINH,MỚI,2021,,XANH DƯƠNG,TỰ ĐỘNG,0,https://www.carmudi.vn/ban-xe-o-to-cr-v-cao-cap-2021-nhan-xe-voi-250tr-tang-bhvcgoi-pk-hap-dan-duy-nhat-trong-thang-11-396775/
+TOYOTA,HIACE,315000000,,CŨ,2009,,,SỐ SÀN,,https://xe.chotot.com/mua-ban-oto-huyen-gia-lam-ha-noi/37137724.htm
+KIA,MORNING,262000000,,CŨ,2016,,,TỰ ĐỘNG,46000,https://xe.chotot.com/mua-ban-oto-quan-nam-tu-liem-ha-noi/89296814.htm
+MAZDA,PREMACY,175000000,,CŨ,2003,,,TỰ ĐỘNG,150000,https://xe.chotot.com/mua-ban-oto-thanh-pho-da-lat-lam-dong/89163139.htm
+KIA,SEDONA,850000000,,CŨ,2018,,,TỰ ĐỘNG,42000,https://xe.chotot.com/mua-ban-oto-quan-tan-phu-tp-ho-chi-minh/89364037.htm
+MERCEDES BENZ,S CLASS,3300000000,,CŨ,2001,,,TỰ ĐỘNG,155000,https://xe.chotot.com/mua-ban-oto-quan-binh-thanh-tp-ho-chi-minh/89364039.htm
+TOYOTA,FORTUNER,445000000,,CŨ,2010,,,TỰ ĐỘNG,100000,https://xe.chotot.com/mua-ban-oto-quan-thu-duc-tp-ho-chi-minh/89300072.htm
+TOYOTA,CAMRY,410000000,,CŨ,2009,,,TỰ ĐỘNG,90000,https://xe.chotot.com/mua-ban-oto-quan-hong-bang-hai-phong/89202596.htm
+TOYOTA,VIOS,135000000,,CŨ,2007,,,SỐ SÀN,200000,https://xe.chotot.com/mua-ban-oto-thanh-pho-tay-ninh-tay-ninh/89364145.htm
+MERCEDES BENZ,E CLASS,1860000000,,CŨ,2018,,,TỰ ĐỘNG,45000,https://xe.chotot.com/mua-ban-oto-quan-cau-giay-ha-noi/88270217.htm
+TOYOTA,CAMRY,775000000,,CŨ,2017,,,TỰ ĐỘNG,45000,https://xe.chotot.com/mua-ban-oto-thanh-pho-tan-an-long-an/88803484.htm
+MITSUBISHI,XPANDER,470000000,,CŨ,2019,,,SỐ SÀN,40000,https://xe.chotot.com/mua-ban-oto-quan-thu-duc-tp-ho-chi-minh/88359866.htm
+TOYOTA,VIOS,215000000,,CŨ,2011,,,SỐ SÀN,92000,https://xe.chotot.com/mua-ban-oto-quan-ha-dong-ha-noi/87539562.htm
+FORD,EVEREST,1035000000,,CŨ,2019,,,TỰ ĐỘNG,19000,https://xe.chotot.com/mua-ban-oto-quan-long-bien-ha-noi/89260305.htm
+CHEVROLET,CAPTIVA,369000000,,CŨ,2013,,,TỰ ĐỘNG,,https://xe.chotot.com/mua-ban-oto-quan-binh-tan-tp-ho-chi-minh/86256878.htm
+FORD,RANGER,155000000,,CŨ,2004,,,SỐ SÀN,60000,https://xe.chotot.com/mua-ban-oto-quan-cam-le-da-nang/89364080.htm
+HONDA,HR-V,750000000,,CŨ,2019,,,TỰ ĐỘNG,32000,https://xe.chotot.com/mua-ban-oto-quan-tan-phu-tp-ho-chi-minh/89363996.htm
+KIA,MORNING,189000000,,CŨ,2015,,,SỐ SÀN,99999,https://xe.chotot.com/mua-ban-oto-huyen-chau-thanh-a-hau-giang/89301113.htm
+AUDI,A4,468000000,,CŨ,2010,,,TỰ ĐỘNG,111400,https://xe.chotot.com/mua-ban-oto-huyen-chau-thanh-a-hau-giang/88062983.htm
+KIA,MORNING,380000000,,CŨ,2019,,,TỰ ĐỘNG,22000,https://xe.chotot.com/mua-ban-oto-quan-cau-giay-ha-noi/89363985.htm
+MAZDA,3,365000000,,CŨ,2012,,,TỰ ĐỘNG,100000,https://xe.chotot.com/mua-ban-oto-quan-bac-tu-liem-ha-noi/89255742.htm
+TOYOTA,CAMRY,1220000000,,CŨ,2020,,,TỰ ĐỘNG,12000,https://xe.chotot.com/mua-ban-oto-quan-cai-rang-can-tho/85518261.htm
+MERCEDES BENZ,GLC CLASS,1399000000,,CŨ,2017,,,TỰ ĐỘNG,42000,https://xe.chotot.com/mua-ban-oto-quan-tan-phu-tp-ho-chi-minh/89238106.htm
+DAEWOO,MAGNUS,95000000,,CŨ,2004,,,SỐ SÀN,800000,https://xe.chotot.com/mua-ban-oto-huyen-tran-van-thoi-ca-mau/88549300.htm
+HYUNDAI,GRAND I10,230000000,,CŨ,2017,,,SỐ SÀN,60000,https://xe.chotot.com/mua-ban-oto-thi-xa-phu-tho-phu-tho/89364019.htm
+KIA,RONDO,616000000,,CŨ,2018,,,TỰ ĐỘNG,33000,https://xe.chotot.com/mua-ban-oto-thanh-pho-bien-hoa-dong-nai/89364052.htm

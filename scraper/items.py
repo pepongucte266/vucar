@@ -5,8 +5,17 @@
 
 import scrapy
 
-
 class ScraperItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    name = scrapy.Field()
+    carmodel = scrapy.Field()
+    link = scrapy.Field()
+    location = scrapy.Field()
+    price = scrapy.Field()
+    status = scrapy.Field()
+    mfg = scrapy.Field()
+    interiorColor = scrapy.Field()
+    exteriorColor = scrapy.Field()
+    gearbox = scrapy.Field()
+    kilometer = scrapy.Field()
+    

@@ -6,8 +6,19 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import pymongo
 
 class ScraperPipeline:
+
+    # def __init__(self):
+    #     self.conn = pymongo.MongoClient(
+    #         'localhost', 
+    #         27017
+    #     )
+
+    #     db = self.conn['db_car']
+    #     self.collection = db['cars']
+
     def process_item(self, item, spider):
+        # self.collection.insert(dict(item))
         return item
