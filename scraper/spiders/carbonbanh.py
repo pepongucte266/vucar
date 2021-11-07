@@ -8,11 +8,37 @@ from numpy.core.fromnumeric import sort
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+
+
+
+def priceFilter(carmodel,price):
+    car = {
+        '3':  700000000,
+        'LUX A 2.0':700000000,
+        'RUSH': 500000000,
+        'GLC': 1500000000,
+        'S CLASS': 2000000000,
+        # 'A CLASS': 2000000000,
+        # 'B CLASS': 2000000000,
+        # 'C CLASS': 2000000000,
+        'CX90': 2500000000,
+        'LUX': 700000000,
+        'RX_350': 1300000000,
+        'CRV': 550000000,
+        'CX 8': 900000000,
+        'CX 5': 650000000,
+
+    }
+    if carmodel in car:
+        if car[carmodel] >= float(price):
+            return True
+        else:
+            return False
 class Carbonbanh(scrapy.Spider):
 
     name = 'carbonbanhhh'
     start_urls = [
-        'https://bonbanh.com/oto/page,%d' % i for i in range(1,2) 
+        'https://bonbanh.com/oto/page,%d' % i for i in range(1,1887) 
     ] 
     def parse(self,response):
         items = ScraperItem()
@@ -36,6 +62,10 @@ class Carbonbanh(scrapy.Spider):
         items['name'] = response.xpath('//*[@id="wrapper"]/div[2]/span[3]/a/span/strong/text()').get().strip().upper()
         items['carmodel'] = response.xpath('//*[@id="wrapper"]/div[2]/span[4]/a/span/strong/text()').get().strip().upper()
         items['price'] = response.meta['price']
+        if(priceFilter(items['carmodel'],items['price']) != True):
+            items['price'] = '0'
+        else:
+            items['price'] = items['price']
         items['location'] = response.meta['location']
         items['status'] = response.xpath('/html/body/div[1]/div[3]/div[5]/div/div[1]/div[1]/div[2]/div[2]/span/text()').get().replace("Xe mới","MỚI").replace("Xe đã dùng","CŨ").upper()
         items['mfg'] = response.xpath('//*[@id="wrapper"]/div[2]/span[5]/a/span/strong/text()').get().upper()
@@ -52,7 +82,7 @@ class Carbonbanh(scrapy.Spider):
 class Car(scrapy.Spider):
     name = 'car'
     start_urls = [
-        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,2) 
+        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,347) 
     ] 
     def parse(self,response):
         for link in response.xpath('//*[@id="listings"]/article/div/div/div/div/a/@href').getall():
@@ -64,6 +94,11 @@ class Car(scrapy.Spider):
         items['name'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[1]/span/text()').extract()[0].strip().upper()
         items['carmodel'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[2]/span/text()').extract()[0].strip().upper()
         items['price'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[3]/div[2]/@data-price').get().replace(".","")
+        if(priceFilter(items['carmodel'],items['price']) != True):
+            items['price'] = '0'
+        else:
+            items['price'] = items['price']
+        
         items['location'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[7]').get().split('\n')[2].split(':')[1].strip().upper()
         items['status'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[5]').get().split('\n')[2].split(':')[1].strip().upper()
         items['mfg'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[4]').get().split('\n')[2].split(':')[1].strip().upper()
@@ -78,7 +113,7 @@ class Car(scrapy.Spider):
 class Carchotot(scrapy.Spider):
     name = 'carchotot'
     start_urls = [
-        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,2) 
+        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,1266) 
     ] 
     def parse(self,response):
         # locations = response.xpath('//div[@class="Layout_bottom__3h6pN  Layout_big__2_Ayd"]').getall()
@@ -92,6 +127,10 @@ class Carchotot(scrapy.Spider):
         items['name'] = response.xpath('//span[@itemprop = "carbrand"]/text()').get().strip().upper()
         items['carmodel'] = response.xpath('//span[@itemprop = "carmodel"]/text()').get().strip().upper()
         items['price'] = response.xpath('//span[@itemprop = "price"]/text()').get().replace(".","").split(' ')[0]
+        if(priceFilter(items['carmodel'],items['price']) != True):
+            items['price'] = '0'
+        else:
+            items['price'] = items['price']
         items['status'] = response.xpath('//span[@itemprop = "condition_ad"]/text()').get().replace("Đã sử dụng","Cũ").upper()
         items['mfg'] = response.xpath('//span[@itemprop = "mfdate"]/text()').get().upper()
         items['interiorColor'] = ''
@@ -124,14 +163,12 @@ result.to_csv('result.csv',index= None,encoding='utf-8-sig')
 
 df = pd.read_csv('result.csv',dtype='unicode')
 df['price'] = pd.to_numeric(df['price'],downcast='float')
-value = df.groupby('carmodel').mean()['price']
-performance = np.array(value).tolist()
-car = sort(df['carmodel'].unique()).tolist()
-y_pos = np.arange(len(car))
-# print(np.array(value).tolist())
+df=df[df['price']>350000000]
+value = df.groupby(['name','carmodel']).mean()['price']
+value = value[value>700000000]
 
-plt.barh(y_pos, performance)
-plt.yticks(y_pos,car)
-plt.xlabel('price')
-plt.ylabel('gia tien trung binh tung dong xe')
-plt.savefig('ave.png')
+# performance = np.array(value).tolist()
+# car = sort(df['carmodel'].unique().tolist())
+# y_pos = np.arange(len(value))
+value.plot.barh()
+plt.show()
