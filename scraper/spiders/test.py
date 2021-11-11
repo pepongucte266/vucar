@@ -2,33 +2,64 @@ from typing import Text
 from numpy.core.fromnumeric import sort
 import pandas as pd
 import matplotlib.pyplot as plt
+import json
 import numpy as np
-def priceFilter(carmodel,price):
-    car = {
-        '3':  700000000,
-        'LUX A 2.0':700000000,
-        'RUSH': 500000000
-    }
-    if carmodel in car:
-        if car[carmodel] >= float(price):
-            return True
-        else:
-            return False
 
-if(priceFilter('3',7000000000) != True):
-    print('oke')
-else:
-    print('not oke')
-# df = pd.read_csv('result.csv',dtype='unicode')
+# # import yagmail
+
+# # receiver = "pepongcute123@gmail.com"
+# # body = "Hello there from Yagmail"
+# # filename = r"D:\vucar\scraper\scraper\spiders\1_About-MIS.pdf"
+
+# # yag = yagmail.SMTP("pepongcute266@gmail.com",'rybzjesjmuwatwgl')
+# # yag.send(
+# #     to=receiver,
+# #     subject="Yagmail test with attachment",
+# #     contents=body, 
+# #     attachments=filename,
+# # )
+
+
+
+
+# pd.set_option('display.max_rows', None)
+# df = pd.read_csv(r'D:\vucar\scraper\result.csv',dtype='unicode')
 # df['price'] = pd.to_numeric(df['price'],downcast='float')
-# df=df[df['price']>350000000]
-# value = df.groupby(['name','carmodel']).mean()['price']
-# # value = value[value>700000000]
-# # print(df)
-# # performance = np.array(value).tolist()
-# # car = sort(df['carmodel'].unique().tolist())
-# y_pos = np.arange(len(value))
-# value.plot.barh()
-# plt.show()
+# value = df[['name','carmodel','price']].groupby(['name','carmodel']).mean()['price']
+# print(value)
+# cars = df[['name','carmodel','price']].sort_values('name').groupby(['name','carmodel']).mean().reset_index(level='carmodel')
+# cars.groupby('name').apply(lambda x: x.set_index('carmodel')['price'].to_dict()).to_json('filename.json', orient='index', force_ascii=False)
+# # value.to_json('filename.json', orient='index')
+# # # # value = value[value>700000000]
+# # # # performance = np.array(value).tolist()
+# # # car = sort(df['name'].unique().tolist())
+# # # carmodel = sort(df['carmodel'].unique().tolist())
+# # # print(car)
+# # objcar = df[['name','carmodel']].sort_values('name')
+# # print(objcar)
+# # result = objcar.to_json("filejson.json",orient="table",index = False)
 
 
+# # value.plot.barh()
+# # plt.show()
+
+
+# def filterCar(item):
+#     result =''
+#     with open(r'D:\vucar\scraper\scraper\spiders\filename.json',encoding = 'utf-8') as filterfile:
+#         data = json.load(filterfile)
+#         print(data['BMW']['520I'])
+#         if(item['carmodel'] not in data[item['name']]):
+#             result += "model not in brand"
+#         elif(float(item['price'])/data[item['name']][item['carmodel']]*100 > 150 or float(item['price'])/data[item['name']][item['carmodel']]*100 < 30 ):
+#             result += 'price!!!'
+#     return result 
+
+# item = {}
+# item['name'] = 'ACURA'
+# item['carmodel'] = 'MDX'
+# item['price'] = '9900000000.0'
+# item['note'] = filterCar(item)
+
+
+# print(item)

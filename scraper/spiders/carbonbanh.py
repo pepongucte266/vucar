@@ -8,32 +8,24 @@ from numpy.core.fromnumeric import sort
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import yagmail
+import json
 
 
 
-def priceFilter(carmodel,price):
-    car = {
-        '3':  700000000,
-        'LUX A 2.0':700000000,
-        'RUSH': 500000000,
-        'GLC': 1500000000,
-        'S CLASS': 2000000000,
-        # 'A CLASS': 2000000000,
-        # 'B CLASS': 2000000000,
-        # 'C CLASS': 2000000000,
-        'CX90': 2500000000,
-        'LUX': 700000000,
-        'RX_350': 1300000000,
-        'CRV': 550000000,
-        'CX 8': 900000000,
-        'CX 5': 650000000,
 
-    }
-    if carmodel in car:
-        if car[carmodel] >= float(price):
-            return True
-        else:
-            return False
+def filterCar(item):
+    result =''
+    with open(r'D:\vucar\scraper\scraper\spiders\filename.json',encoding = 'utf-8') as filterfile:
+        data = json.load(filterfile)
+        print(data['BMW']['520I'])
+        if(item['carmodel'] not in data[item['name']]):
+            result += "model not in brand"
+        elif(float(item['price'])/data[item['name']][item['carmodel']]*100 > 150 or float(item['price'])/data[item['name']][item['carmodel']]*100 < 30 ):
+            result += 'price!!!'
+    return result
+
+
 class Carbonbanh(scrapy.Spider):
 
     name = 'carbonbanhhh'
@@ -62,10 +54,7 @@ class Carbonbanh(scrapy.Spider):
         items['name'] = response.xpath('//*[@id="wrapper"]/div[2]/span[3]/a/span/strong/text()').get().strip().upper()
         items['carmodel'] = response.xpath('//*[@id="wrapper"]/div[2]/span[4]/a/span/strong/text()').get().strip().upper()
         items['price'] = response.meta['price']
-        if(priceFilter(items['carmodel'],items['price']) != True):
-            items['price'] = '0'
-        else:
-            items['price'] = items['price']
+        
         items['location'] = response.meta['location']
         items['status'] = response.xpath('/html/body/div[1]/div[3]/div[5]/div/div[1]/div[1]/div[2]/div[2]/span/text()').get().replace("Xe mới","MỚI").replace("Xe đã dùng","CŨ").upper()
         items['mfg'] = response.xpath('//*[@id="wrapper"]/div[2]/span[5]/a/span/strong/text()').get().upper()
@@ -73,11 +62,9 @@ class Carbonbanh(scrapy.Spider):
         items['exteriorColor'] = response.xpath('/html/body/div[1]/div[3]/div[5]/div/div[1]/div[1]/div[5]/div[2]/span/text()').get().upper()
         items['gearbox'] = response.xpath('/html/body/div[1]/div[3]/div[5]/div/div[1]/div[2]/div[4]/div[2]/span/text()').get().replace("Số tự động",'tự động').upper()
         items['kilometer'] = response.xpath('/html/body/div[1]/div[3]/div[5]/div/div[1]/div[1]/div[4]/div[2]/span/text()').get().split(' ')[0].replace(',','')
-        
-
         items['link'] = response.url
+        items['note'] = filterCar(items)
         yield items
-
 
 class Car(scrapy.Spider):
     name = 'car'
@@ -91,13 +78,10 @@ class Car(scrapy.Spider):
     def parse_carmudi(self,response):
         items = ScraperItem()
         
-        items['name'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[1]/span/text()').extract()[0].strip().upper()
-        items['carmodel'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[2]/span/text()').extract()[0].strip().upper()
+        items['name'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[1]/span/text()').extract()[0].replace('_','').strip().upper()
+        items['carmodel'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[2]/span/text()').extract()[0].replace('_',' ').strip().upper().replace('LUX-A-2-0','LUX A 2.0').replace('LUX-SA-2-0','LUX SA 2.0')
         items['price'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[3]/div[2]/@data-price').get().replace(".","")
-        if(priceFilter(items['carmodel'],items['price']) != True):
-            items['price'] = '0'
-        else:
-            items['price'] = items['price']
+        
         
         items['location'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[7]').get().split('\n')[2].split(':')[1].strip().upper()
         items['status'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[5]').get().split('\n')[2].split(':')[1].strip().upper()
@@ -107,6 +91,7 @@ class Car(scrapy.Spider):
         items['gearbox'] = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[4]/div[6]').get().split('\n')[2].split(':')[1].strip().upper()
         items['kilometer'] = '0'
         items['link'] = response.url
+        items['note'] = filterCar(items)
 
         yield items
 
@@ -127,10 +112,7 @@ class Carchotot(scrapy.Spider):
         items['name'] = response.xpath('//span[@itemprop = "carbrand"]/text()').get().strip().upper()
         items['carmodel'] = response.xpath('//span[@itemprop = "carmodel"]/text()').get().strip().upper()
         items['price'] = response.xpath('//span[@itemprop = "price"]/text()').get().replace(".","").split(' ')[0]
-        if(priceFilter(items['carmodel'],items['price']) != True):
-            items['price'] = '0'
-        else:
-            items['price'] = items['price']
+        
         items['status'] = response.xpath('//span[@itemprop = "condition_ad"]/text()').get().replace("Đã sử dụng","Cũ").upper()
         items['mfg'] = response.xpath('//span[@itemprop = "mfdate"]/text()').get().upper()
         items['interiorColor'] = ''
@@ -138,6 +120,8 @@ class Carchotot(scrapy.Spider):
         items['gearbox'] = response.xpath('//span[@itemprop = "gearbox"]/text()').get().upper()
         items['kilometer'] = response.xpath('//span[@itemprop = "mileage_v2"]/text()').get()
         items['link'] = response.url
+        items['note'] = filterCar(items)
+
         yield items
 
 SETTINGS = {
@@ -152,7 +136,7 @@ process.start()
 
 
 data=[]
-with jsonlines.open('D:/vucar/scraper/result.jl') as reader:
+with jsonlines.open('result.jl') as reader:
     for obj in reader:
         data.append(obj)
 reader.close()
@@ -161,14 +145,26 @@ result = pd.DataFrame(data)
 result.to_csv('result.csv',index= None,encoding='utf-8-sig')
 
 
-df = pd.read_csv('result.csv',dtype='unicode')
-df['price'] = pd.to_numeric(df['price'],downcast='float')
-df=df[df['price']>350000000]
-value = df.groupby(['name','carmodel']).mean()['price']
-value = value[value>700000000]
+# df = pd.read_csv('result.csv',dtype='unicode')
+# df['price'] = pd.to_numeric(df['price'],downcast='float')
+# value = df.groupby(['name','carmodel']).mean()['price']
+# value = value[value>700000000]
 
 # performance = np.array(value).tolist()
 # car = sort(df['carmodel'].unique().tolist())
 # y_pos = np.arange(len(value))
-value.plot.barh()
-plt.show()
+# value.plot.barh()
+# plt.show()
+# plt.savefig('result.png')
+# "jake.long.vu@gmail.com"
+receiver = ["pepongcute123@gmail.com","jake.long.vu@vucar.net"]
+body = "Hello there from VUCAR"
+filename = 'result.csv'
+
+yag = yagmail.SMTP("pepongcute266@gmail.com",'rybzjesjmuwatwgl')
+yag.send(
+    to=receiver,
+    subject="final tool test",
+    contents=body, 
+    attachments=filename,
+)

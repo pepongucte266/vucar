@@ -18,4 +18,5 @@ class ScraperItem(scrapy.Item):
     exteriorColor = scrapy.Field()
     gearbox = scrapy.Field()
     kilometer = scrapy.Field()
+    note = scrapy.Field()
     
