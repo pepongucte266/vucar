@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*- 
+from datetime import datetime
 from typing import Text
 import scrapy
 from scrapy.crawler import CrawlerProcess
@@ -30,7 +31,7 @@ class Carbonbanh(scrapy.Spider):
 
     name = 'carbonbanhhh'
     start_urls = [
-        'https://bonbanh.com/oto/page,%d' % i for i in range(1,1887) 
+        'https://bonbanh.com/oto/page,%d' % i for i in range(1,3) 
     ] 
     def parse(self,response):
         items = ScraperItem()
@@ -69,7 +70,7 @@ class Carbonbanh(scrapy.Spider):
 class Car(scrapy.Spider):
     name = 'car'
     start_urls = [
-        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,347) 
+        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,3) 
     ] 
     def parse(self,response):
         for link in response.xpath('//*[@id="listings"]/article/div/div/div/div/a/@href').getall():
@@ -98,7 +99,7 @@ class Car(scrapy.Spider):
 class Carchotot(scrapy.Spider):
     name = 'carchotot'
     start_urls = [
-        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,1266) 
+        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,3) 
     ] 
     def parse(self,response):
         # locations = response.xpath('//div[@class="Layout_bottom__3h6pN  Layout_big__2_Ayd"]').getall()
@@ -144,27 +145,20 @@ reader.close()
 result = pd.DataFrame(data)
 result.to_csv('result.csv',index= None,encoding='utf-8-sig')
 
+df = pd.read_csv('result.csv',dtype='unicode')
+warning = df.query('note == "price!!!" or note=="model not in brand"')
+warning.to_csv('warning.csv',encoding='utf-8')
 
-# df = pd.read_csv('result.csv',dtype='unicode')
-# df['price'] = pd.to_numeric(df['price'],downcast='float')
-# value = df.groupby(['name','carmodel']).mean()['price']
-# value = value[value>700000000]
-
-# performance = np.array(value).tolist()
-# car = sort(df['carmodel'].unique().tolist())
-# y_pos = np.arange(len(value))
-# value.plot.barh()
-# plt.show()
-# plt.savefig('result.png')
 # "jake.long.vu@gmail.com"
+date =datetime.now()
 receiver = ["pepongcute123@gmail.com","jake.long.vu@vucar.net"]
 body = "Hello there from VUCAR"
-filename = 'result.csv'
+filename = ['result.csv','warning.csv']
 
 yag = yagmail.SMTP("pepongcute266@gmail.com",'rybzjesjmuwatwgl')
 yag.send(
     to=receiver,
-    subject="final tool test",
+    subject=str(date),
     contents=body, 
     attachments=filename,
 )
