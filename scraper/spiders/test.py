@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Text
 from numpy.core.fromnumeric import sort
 import pandas as pd
@@ -5,7 +6,7 @@ import matplotlib.pyplot as plt
 import json
 import numpy as np
 
-# # import yagmail
+import yagmail
 
 # # receiver = "pepongcute123@gmail.com"
 # # body = "Hello there from Yagmail"
@@ -63,3 +64,15 @@ import numpy as np
 
 
 # print(item)
+# date = datetime.now()
+# receiver = ["pepongcute123@gmail.com","jake.long.vu@vucar.net"]
+# body = "Hello there from VUCAR"
+# filename = ['result.csv','warning.csv']
+
+# yag = yagmail.SMTP("pepongcute266@gmail.com",'rybzjesjmuwatwgl')
+# yag.send(
+#     to=receiver,
+#     subject=str(date),
+#     contents=body, 
+#     attachments=filename,
+# )
