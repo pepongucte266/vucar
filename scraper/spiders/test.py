@@ -5,74 +5,44 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import json
 import numpy as np
-
+from datetime import date
 import yagmail
-
-# # receiver = "pepongcute123@gmail.com"
-# # body = "Hello there from Yagmail"
-# # filename = r"D:\vucar\scraper\scraper\spiders\1_About-MIS.pdf"
-
-# # yag = yagmail.SMTP("pepongcute266@gmail.com",'rybzjesjmuwatwgl')
-# # yag.send(
-# #     to=receiver,
-# #     subject="Yagmail test with attachment",
-# #     contents=body, 
-# #     attachments=filename,
-# # )
-
-
 
 
 # pd.set_option('display.max_rows', None)
-# df = pd.read_csv(r'D:\vucar\scraper\result.csv',dtype='unicode')
+# df = pd.read_csv('result.csv',dtype='unicode')
 # df['price'] = pd.to_numeric(df['price'],downcast='float')
-# value = df[['name','carmodel','price']].groupby(['name','carmodel']).mean()['price']
-# print(value)
-# cars = df[['name','carmodel','price']].sort_values('name').groupby(['name','carmodel']).mean().reset_index(level='carmodel')
-# cars.groupby('name').apply(lambda x: x.set_index('carmodel')['price'].to_dict()).to_json('filename.json', orient='index', force_ascii=False)
-# # value.to_json('filename.json', orient='index')
-# # # # value = value[value>700000000]
-# # # # performance = np.array(value).tolist()
-# # # car = sort(df['name'].unique().tolist())
-# # # carmodel = sort(df['carmodel'].unique().tolist())
-# # # print(car)
-# # objcar = df[['name','carmodel']].sort_values('name')
-# # print(objcar)
-# # result = objcar.to_json("filejson.json",orient="table",index = False)
+
+# cars = df[['name','mfg','carmodel','price']].sort_values('name').groupby(['name','carmodel','mfg']).mean().reset_index(level='carmodel').reset_index(level='mfg')
+
+# # cars.groupby(['name']).apply(lambda x: x.set_index('carmodel')['price'].to_dict()).to_json('test.json', orient='index', force_ascii=False)
 
 
-# # value.plot.barh()
-# # plt.show()
+# def rollup2(x):
+#     return x.set_index('mfg')['price'].to_dict()
+# def rollup3(x):
+#     return x.groupby('carmodel').apply(rollup2).to_dict()
 
-
+# data = cars.groupby(['name']).apply(rollup3).to_json('test.json', orient='index', force_ascii=False)
 # def filterCar(item):
 #     result =''
-#     with open(r'D:\vucar\scraper\scraper\spiders\filename.json',encoding = 'utf-8') as filterfile:
+#     with open(r'D:\vucar\scraper\scraper\spiders\test.json',encoding = 'utf-8') as filterfile:
 #         data = json.load(filterfile)
-#         print(data['BMW']['520I'])
-#         if(item['carmodel'] not in data[item['name']]):
+#         if(item['name'] not in data.keys()):
+#             result += 'brand not in list'
+#         elif(item['carmodel'] not in data[item['name']].keys()):
 #             result += "model not in brand"
-#         elif(float(item['price'])/data[item['name']][item['carmodel']]*100 > 150 or float(item['price'])/data[item['name']][item['carmodel']]*100 < 30 ):
+#         elif(item['mfg'] not in data[item['name']][item['carmodel']].keys()):
+#             result += "mfg not in list"
+#         elif(float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 > 150 or float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 < 60 ):
 #             result += 'price!!!'
-#     return result 
+#     return result
 
 # item = {}
-# item['name'] = 'ACURA'
-# item['carmodel'] = 'MDX'
-# item['price'] = '9900000000.0'
-# item['note'] = filterCar(item)
-
-
-# print(item)
-# date = datetime.now()
-# receiver = ["pepongcute123@gmail.com","jake.long.vu@vucar.net"]
-# body = "Hello there from VUCAR"
-# filename = ['result.csv','warning.csv']
-
-# yag = yagmail.SMTP("pepongcute266@gmail.com",'rybzjesjmuwatwgl')
-# yag.send(
-#     to=receiver,
-#     subject=str(date),
-#     contents=body, 
-#     attachments=filename,
-# )
+# item['carmodel'] = 'Q7'
+# item['name'] = 'AUDI'
+# item['mfg'] = '12'
+# item['price'] = '2500000000'
+# # print(item['name'])
+# print(filterCar(item))
+# # filterCar(item)

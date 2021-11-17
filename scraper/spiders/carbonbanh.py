@@ -11,18 +11,22 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yagmail
 import json
+from datetime import date
 
 
 
 
 def filterCar(item):
     result =''
-    with open(r'D:\vucar\scraper\scraper\spiders\filename.json',encoding = 'utf-8') as filterfile:
+    with open(r'D:\vucar\scraper\scraper\spiders\test.json',encoding = 'utf-8') as filterfile:
         data = json.load(filterfile)
-        print(data['BMW']['520I'])
-        if(item['carmodel'] not in data[item['name']]):
+        if(item['name'] not in data.keys()):
+            result += 'brand not in list'
+        elif(item['carmodel'] not in data[item['name']].keys()):
             result += "model not in brand"
-        elif(float(item['price'])/data[item['name']][item['carmodel']]*100 > 150 or float(item['price'])/data[item['name']][item['carmodel']]*100 < 30 ):
+        elif(item['mfg'] not in data[item['name']][item['carmodel']].keys()):
+            result += "mfg not in list"
+        elif(float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 > 150 or float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 < 60 ):
             result += 'price!!!'
     return result
 
@@ -31,7 +35,7 @@ class Carbonbanh(scrapy.Spider):
 
     name = 'carbonbanhhh'
     start_urls = [
-        'https://bonbanh.com/oto/page,%d' % i for i in range(1,3) 
+        'https://bonbanh.com/oto/page,%d' % i for i in range(1,1887) 
     ] 
     def parse(self,response):
         items = ScraperItem()
@@ -70,7 +74,7 @@ class Carbonbanh(scrapy.Spider):
 class Car(scrapy.Spider):
     name = 'car'
     start_urls = [
-        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,3) 
+        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,347) 
     ] 
     def parse(self,response):
         for link in response.xpath('//*[@id="listings"]/article/div/div/div/div/a/@href').getall():
@@ -99,7 +103,7 @@ class Car(scrapy.Spider):
 class Carchotot(scrapy.Spider):
     name = 'carchotot'
     start_urls = [
-        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,3) 
+        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,1266) 
     ] 
     def parse(self,response):
         # locations = response.xpath('//div[@class="Layout_bottom__3h6pN  Layout_big__2_Ayd"]').getall()
@@ -147,10 +151,11 @@ result.to_csv('result.csv',index= None,encoding='utf-8-sig')
 
 df = pd.read_csv('result.csv',dtype='unicode')
 warning = df.query('note == "price!!!" or note=="model not in brand"')
+rows = len(df.index)
 warning.to_csv('warning.csv',encoding='utf-8')
 
 # "jake.long.vu@gmail.com"
-date =datetime.now()
+today =date.today()
 receiver = ["pepongcute123@gmail.com","jake.long.vu@vucar.net"]
 body = "Hello there from VUCAR"
 filename = ['result.csv','warning.csv']
@@ -158,7 +163,7 @@ filename = ['result.csv','warning.csv']
 yag = yagmail.SMTP("pepongcute266@gmail.com",'rybzjesjmuwatwgl')
 yag.send(
     to=receiver,
-    subject=str(date),
+    subject='[DAILY DATA] '+str(today)+" "+str(rows),
     contents=body, 
     attachments=filename,
 )
