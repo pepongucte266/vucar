@@ -9,40 +9,28 @@ from datetime import date
 import yagmail
 
 
-# pd.set_option('display.max_rows', None)
-# df = pd.read_csv('result.csv',dtype='unicode')
-# df['price'] = pd.to_numeric(df['price'],downcast='float')
+def rollup2(x):
+    return x.set_index('mfg')['price'].to_dict()
+def rollup3(x):
+    return x.groupby('carmodel').apply(rollup2).to_dict()
+def createNewFilterFile():
+    pd.set_option('display.max_rows', None)
+    df = pd.read_csv('currentData.csv',dtype='unicode')
+    df['price'] = pd.to_numeric(df['price'],downcast='float')
+    cars = df[['name','mfg','carmodel','price']].sort_values('name').groupby(['name','carmodel','mfg']).mean().reset_index(level='carmodel').reset_index(level='mfg')
+    cars.groupby(['name']).apply(rollup3).to_json('test.json', orient='index', force_ascii=False)
 
-# cars = df[['name','mfg','carmodel','price']].sort_values('name').groupby(['name','carmodel','mfg']).mean().reset_index(level='carmodel').reset_index(level='mfg')
+def extendData(curentData,oldData,todayData):
+    n = todayData[~todayData.isin(curentData)].dropna(how='all')
+    curentData = pd.concat([curentData,n])
+    curentData = curentData.drop_duplicates()
+    curentData = pd.concat([curentData,oldData]).drop_duplicates(keep=False)
+    curentData = curentData[~curentData.isin(oldData)].dropna(how='all')
+    n.to_csv('oldData.csv',index= None,encoding='utf-8-sig')
+    return curentData
 
-# # cars.groupby(['name']).apply(lambda x: x.set_index('carmodel')['price'].to_dict()).to_json('test.json', orient='index', force_ascii=False)
-
-
-# def rollup2(x):
-#     return x.set_index('mfg')['price'].to_dict()
-# def rollup3(x):
-#     return x.groupby('carmodel').apply(rollup2).to_dict()
-
-# data = cars.groupby(['name']).apply(rollup3).to_json('test.json', orient='index', force_ascii=False)
-# def filterCar(item):
-#     result =''
-#     with open(r'D:\vucar\scraper\scraper\spiders\test.json',encoding = 'utf-8') as filterfile:
-#         data = json.load(filterfile)
-#         if(item['name'] not in data.keys()):
-#             result += 'brand not in list'
-#         elif(item['carmodel'] not in data[item['name']].keys()):
-#             result += "model not in brand"
-#         elif(item['mfg'] not in data[item['name']][item['carmodel']].keys()):
-#             result += "mfg not in list"
-#         elif(float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 > 150 or float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 < 60 ):
-#             result += 'price!!!'
-#     return result
-
-# item = {}
-# item['carmodel'] = 'Q7'
-# item['name'] = 'AUDI'
-# item['mfg'] = '12'
-# item['price'] = '2500000000'
-# # print(item['name'])
-# print(filterCar(item))
-# # filterCar(item)
+curentData = pd.read_csv('currentData.csv',dtype='unicode')
+todayData = pd.read_csv('[DAILY DATA] 2021-11-25 result.csv',dtype='unicode')
+oldData = pd.read_csv('oldData.csv',dtype='unicode')
+extendData(curentData,oldData,todayData).to_csv('currentData.csv',index= None,encoding='utf-8-sig')
+createNewFilterFile()
