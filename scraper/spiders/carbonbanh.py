@@ -49,7 +49,7 @@ def filterCar(item):
             result += "model not in brand"
         elif(item['mfg'] not in data[item['name']][item['carmodel']].keys()):
             result += "mfg not in list"
-        elif(float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 > 115 or float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 < 115 ):
+        elif(float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 > 115 or float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 < 85 ):
             result += 'price!!!'
     return result
 
@@ -58,7 +58,7 @@ class Carbonbanh(scrapy.Spider):
 
     name = 'carbonbanhhh'
     start_urls = [
-        'https://bonbanh.com/oto/page,%d' % i for i in range(1,1887) 
+        'https://bonbanh.com/oto/page,%d' % i for i in range(1,10) 
     ] 
     def parse(self,response):
         items = ScraperItem()
@@ -97,7 +97,7 @@ class Carbonbanh(scrapy.Spider):
 class Car(scrapy.Spider):
     name = 'car'
     start_urls = [
-        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,347) 
+        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,10) 
     ] 
     def parse(self,response):
         for link in response.xpath('//*[@id="listings"]/article/div/div/div/div/a/@href').getall():
@@ -126,7 +126,7 @@ class Car(scrapy.Spider):
 class Carchotot(scrapy.Spider):
     name = 'carchotot'
     start_urls = [
-        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,1266) 
+        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,10) 
     ] 
     def parse(self,response):
         # locations = response.xpath('//div[@class="Layout_bottom__3h6pN  Layout_big__2_Ayd"]').getall()
