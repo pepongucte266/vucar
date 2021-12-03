@@ -1,0 +1,36 @@
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - '2021-12-03 04:24:55.828268'
+    - '2021-12-03 04:24:55.828268'
+
+---
+users:
+  columns:
+  - id
+  - name
+  - age
+  - email
+  - phone
+  - created_at
+  - updated_at
+  - gender
+  - date_of_birth
+  records: 
+  - - 1
+    - vu thai son
+    - 21
+    - thaisoncu266@gmail.com
+    - '0981720726'
+    - '2021-12-03 04:38:10.390344'
+    - '2021-12-03 04:38:10.390344'
+    - 
+    - 
