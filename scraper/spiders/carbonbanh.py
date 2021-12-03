@@ -27,6 +27,7 @@ def createNewFilterFile():
     pd.set_option('display.max_rows', None)
     df = pd.read_csv('currentData.csv',dtype='unicode')
     df['price'] = pd.to_numeric(df['price'],downcast='float')
+    df = df.query('status == "CŨ"')
     cars = df[['name','mfg','carmodel','price']].sort_values('name').groupby(['name','carmodel','mfg']).mean().reset_index(level='carmodel').reset_index(level='mfg')
     cars.groupby(['name']).apply(rollup3).to_json('test.json', orient='index', force_ascii=False)
 
@@ -58,7 +59,7 @@ class Carbonbanh(scrapy.Spider):
 
     name = 'carbonbanhhh'
     start_urls = [
-        'https://bonbanh.com/oto/page,%d' % i for i in range(1,10) 
+        'https://bonbanh.com/oto/page,%d' % i for i in range(1,1887) 
     ] 
     def parse(self,response):
         items = ScraperItem()
@@ -97,7 +98,7 @@ class Carbonbanh(scrapy.Spider):
 class Car(scrapy.Spider):
     name = 'car'
     start_urls = [
-        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,10) 
+        'https://www.carmudi.vn/mua-ban-o-to/index%d.html' % i for i in range(1,347) 
     ] 
     def parse(self,response):
         for link in response.xpath('//*[@id="listings"]/article/div/div/div/div/a/@href').getall():
@@ -126,7 +127,7 @@ class Car(scrapy.Spider):
 class Carchotot(scrapy.Spider):
     name = 'carchotot'
     start_urls = [
-        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,10) 
+        'https://xe.chotot.com/mua-ban-oto?page=%d' % i for i in range(1,1266) 
     ] 
     def parse(self,response):
         # locations = response.xpath('//div[@class="Layout_bottom__3h6pN  Layout_big__2_Ayd"]').getall()
@@ -178,14 +179,14 @@ result.to_csv(title,index= None,encoding='utf-8-sig')
 df = pd.read_csv(title,dtype='unicode')
 warning = df.query('note == "price!!!" or note=="model not in brand"')
 rows = len(warning.index)
-warning.to_csv('warning.csv',encoding='utf-8')
+warning.to_csv('warning.csv',encoding='utf-8-sig')
 
 # "jake.long.vu@gmail.com"
-receiver = ["pepongcute123@gmail.com"]
+receiver = ["pepongcute123@gmail.com","jake.long.vu@gmail.com"]
 body = "Hello there from VUCAR (bon)"
 filename = [title,'warning.csv']
 
-yag = yagmail.SMTP("pepongcute266@gmail.com",'rybzjesjmuwatwgl')
+yag = yagmail.SMTP("son.vu@vucar.net","pykpbkqlyjwmoegm")
 yag.send(
     to=receiver,
     subject='[DAILY DATA] '+str(today)+" "+str(rows),
