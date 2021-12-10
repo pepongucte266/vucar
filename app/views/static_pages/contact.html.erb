@@ -1,2 +1,7 @@
-<% provide :title, "Contact" %>
-<h1>Hello your name </h1>
+<% provide :title, t("contact") %>
+<h1><%= t :contact %></h1>
+<p>
+  <%= sanitize t(".content",
+    text: t("text"),
+    contact_page: link_to(t(".text"), Settings.rails_contact)) %>
+</p>
