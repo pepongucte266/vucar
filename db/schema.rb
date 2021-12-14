@@ -10,17 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_042437) do
+ActiveRecord::Schema.define(version: 2021_12_10_081017) do
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.integer "age"
-    t.string "email"
-    t.string "phone"
+  create_table "microposts", charset: "utf8mb3", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "gender"
-    t.datetime "date_of_birth"
   end
 
 end

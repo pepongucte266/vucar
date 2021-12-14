@@ -1,0 +1,21 @@
+vi:
+  welcome: Chào mừng đến với Sample App
+  help: "Trợ giúp"
+  contact: "Liên hệ"
+  home: "Trang chủ"
+  login: "Đăng nhập"
+  about: "Về chúng tôi"
+  news: "Tin tức"
+  text: "Hướng dẫn Ruby on Rails"
+  author: "Michael Hartl"
+  help_page: "trang trợ giúp Rails Tutorial"
+  book: "sách Ruby on Rails Tutorial"
+  static_pages:
+    home:
+      content: "Đây là trang chủ cho %{link} sample application."
+      signup: "Đăng ký ngay bây giờ !"
+    contact:
+      content: "Liên hệ với %{text} về sample app tại %{contact_page}"
+      text: "trang liên hệ"
+    help:
+      content: "Nhận trợ giúp về  %{text} tại %{link_help_page}. Để nhận trợ giúp về  sample app, hãy xem %{link_rails_book}."
