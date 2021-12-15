@@ -4,6 +4,7 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'color';
+
 /* universal */
 
 body {
@@ -44,34 +45,32 @@ textarea {
     color: $whiteColor;
     text-decoration: none;
 }
+
 img {
     display: none;
 }
 
+
 /* footer */
+
 footer {
     margin-top: 45px;
     padding-top: 5px;
     border-top: 1px solid $whiteColor;
     color: $greyColor;
-
     a {
         color: $blackColor;
     }
-
     a:hover {
         color: $blackColor;
     }
-
     small {
         float: left;
-        }
-
+    }
     ul {
         float: right;
         list-style: none;
     }
-
     ul li {
         float: left;
         margin-left: 15px;
