@@ -19,3 +19,16 @@ vi:
       text: "trang liên hệ"
     help:
       content: "Nhận trợ giúp về  %{text} tại %{link_help_page}. Để nhận trợ giúp về  sample app, hãy xem %{link_rails_book}."
+  users:
+    new:
+      title: "Đăng ký"
+      name: "Tên"
+      email: "Email"
+      password: "Mật khẩu"
+      confirmation: "Xác nhận mật khẩu"
+      submit: "Tạo tài khảon"
+  error:
+      error_valid: "Hiện đang có %{error}"
+      error: "lỗi"
+      user:
+        not_found: "Không tìm thấy người dùng"

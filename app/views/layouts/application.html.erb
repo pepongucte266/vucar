@@ -10,6 +10,9 @@
     <%= link_to Settings.enabled_locales[0], locale: :en %>
     <%= link_to Settings.enabled_locales[1], locale: :vi %>
     <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
       <%= yield %>
       <%= render "layouts/footer" %>
     </div>

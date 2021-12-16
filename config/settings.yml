@@ -5,7 +5,7 @@ rails_news: "https://news.railstutorial.org/"
 rails_contact: "https://www.railstutorial.org/#contact"
 rails_help: "https://github.com/mhartl/sample_app_6th_ed/blob/main/HELP.md"
 rails_book: "https://www.railstutorial.org/book"
-email_regex: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+email_regex: !ruby/regexp /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 max_name: 50
 max_email: 255
 min_password: 6

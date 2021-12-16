@@ -49,3 +49,16 @@ en:
       text: "contact page"
     help:
       content: "Get help on the %{text} at the %{link_help_page}. To get help on this sample app, see the %{link_rails_book}."
+  users:
+    new:
+      title: "Sign up"
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      confirmation: "Confirmation"
+      submit: "Create my account"
+  error:
+    error_valid: "The form contains %{error}"
+    error: "error"
+    user:
+      not_found: "Not found user"

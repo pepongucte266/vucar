@@ -4,5 +4,8 @@ Rails.application.routes.draw do
     get "/help", to: "static_pages#help"
     get "/home", to: "static_pages#home"
     get "/contact", to: "static_pages#contact"
+    get "/signup", to: "users#new"
+    resources :users
+    # resources :users, only: %i(new create)
   end
 end

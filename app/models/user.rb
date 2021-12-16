@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  ATTR_CHANGE = %i(name email password password_confirmation).freeze
   before_save :downcase_email
   validates :name, presence: true, length: {maximum: Settings.max_name}
   validates :email, presence: true, length: {maximum: Settings.max_email},
