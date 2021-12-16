@@ -38,6 +38,7 @@ def extendData(curentData,oldData,todayData):
     curentData = pd.concat([curentData,oldData]).drop_duplicates(keep=False)
     curentData = curentData[~curentData.isin(oldData)].dropna(how='all')
     n.to_csv('oldData.csv',index= None,encoding='utf-8-sig')
+    curentData = curentData.drop_duplicates(subset=['link'])
     return curentData
 
 def filterCar(item):
