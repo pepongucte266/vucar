@@ -27,7 +27,7 @@ def createNewFilterFile():
     pd.set_option('display.max_rows', None)
     df = pd.read_csv('currentData.csv',dtype='unicode')
     df['price'] = pd.to_numeric(df['price'],downcast='float')
-    df = df.query('status == "CŨ"')
+    df = df.query('note != "price!!!"')
     cars = df[['name','mfg','carmodel','price']].sort_values('name').groupby(['name','carmodel','mfg']).mean().reset_index(level='carmodel').reset_index(level='mfg')
     cars.groupby(['name']).apply(rollup3).to_json('test.json', orient='index', force_ascii=False)
 
@@ -38,11 +38,12 @@ def extendData(curentData,oldData,todayData):
     curentData = pd.concat([curentData,oldData]).drop_duplicates(keep=False)
     curentData = curentData[~curentData.isin(oldData)].dropna(how='all')
     n.to_csv('oldData.csv',index= None,encoding='utf-8-sig')
+    curentData = curentData.drop_duplicates(subset=['link'])
     return curentData
 
 def filterCar(item):
     result =''
-    with open(r'D:\vucar\scraper\scraper\spiders\test.json',encoding = 'utf-8') as filterfile:
+    with open('test.json',encoding = 'utf-8') as filterfile:
         data = json.load(filterfile)
         if(item['name'] not in data.keys()):
             result += 'brand not in list'
@@ -50,7 +51,7 @@ def filterCar(item):
             result += "model not in brand"
         elif(item['mfg'] not in data[item['name']][item['carmodel']].keys()):
             result += "mfg not in list"
-        elif(float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 > 115 or float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 < 85 ):
+        elif(float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 > 125 or float(item['price'])/data[item['name']][item['carmodel']][item['mfg']]*100 < 85 ):
             result += 'price!!!'
     return result
 
@@ -179,12 +180,13 @@ result.to_csv(title,index= None,encoding='utf-8-sig')
 df = pd.read_csv(title,dtype='unicode')
 warning = df.query('note == "price!!!" or note=="model not in brand"')
 rows = len(warning.index)
-warning.to_csv('warning.csv',encoding='utf-8-sig')
+warningTitle = '[DAILY WARNING] '+str(rows)+' rows '+str(today)+'.csv'
+warning.to_csv(warningTitle,encoding='utf-8-sig')
 
-# "jake.long.vu@gmail.com"
-receiver = ["pepongcute123@gmail.com","jake.long.vu@gmail.com"]
-body = "Hello there from VUCAR (bon)"
-filename = [title,'warning.csv']
+# "jake.long.vu@m"
+receiver = ["pepongcute123@gmail.com","jake.long.vu@vucar.net"]
+body = "Hello there from VUCAR (server)"
+filename = [title,warningTitle]
 
 yag = yagmail.SMTP("son.vu@vucar.net","pykpbkqlyjwmoegm")
 yag.send(
