@@ -10,6 +10,15 @@ vi:
   author: "Michael Hartl"
   help_page: "trang trợ giúp Rails Tutorial"
   book: "sách Ruby on Rails Tutorial"
+  message: "Email hoặc mật khẩu không hợp lệ"
+  layouts:
+    header:
+      user: "Người dùng"
+      account: "Tài khoản"
+      profile: "Hồ sơ"
+      setting: "Cài đặt"
+      logout: "Đăng xuất"
+      login: "Đăng nhập"
   static_pages:
     home:
       content: "Đây là trang chủ cho %{link} sample application."
@@ -32,3 +41,11 @@ vi:
       error: "lỗi"
       user:
         not_found: "Không tìm thấy người dùng"
+  sessions:
+    new:
+      title: "Đăng nhập"
+      email: "Email"
+      password: "Mật khẩu"
+      button: "Đăng nhập"
+      text: "Người dùng mới? %{link_sign_up}"
+      link_sign_up_text: "Đăng ký ngay! "
