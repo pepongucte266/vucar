@@ -48,3 +48,4 @@ en:
       button: "Log in"
       text: "New user? ? %{link_sign_up}"
       link_sign_up_text: "Sign up now!"
+      remember_me: "Remember me on this computer"

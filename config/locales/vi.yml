@@ -49,3 +49,4 @@ vi:
       button: "Đăng nhập"
       text: "Người dùng mới? %{link_sign_up}"
       link_sign_up_text: "Đăng ký ngay! "
+      remember_me: "Ghi nhớ tôi"
