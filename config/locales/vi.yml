@@ -11,6 +11,11 @@ vi:
   help_page: "trang trợ giúp Rails Tutorial"
   book: "sách Ruby on Rails Tutorial"
   message: "Email hoặc mật khẩu không hợp lệ"
+  please_log_in: "Xin hãy đăng nhạp"
+  user_deleted: "Người dùng đã được xóa"
+  delete_fall: "Xóa thất bại"
+  profile_updated: "Cập nhật thành công"
+  update_fall: "Cập nhật thất bại"
   layouts:
     header:
       user: "Người dùng"
@@ -29,13 +34,24 @@ vi:
     help:
       content: "Nhận trợ giúp về  %{text} tại %{link_help_page}. Để nhận trợ giúp về  sample app, hãy xem %{link_rails_book}."
   users:
+    index:
+      title: "Tất cả người dùng"
     new:
+      title: "Đăng ký"
+    edit:
+      title: "Chỉnh sửa người dùng"
+      content: "Cập nhật thông tin của bạn"
+      change: "Thay đổi"
+    form:
       title: "Đăng ký"
       name: "Tên"
       email: "Email"
       password: "Mật khẩu"
       confirmation: "Xác nhận mật khẩu"
-      submit: "Tạo tài khảon"
+      submit: "Xác nhận"
+    user:
+      sure: "Bạn có chắc chắn không?"
+      delete: "Xóa"
   error:
       error_valid: "Hiện đang có %{error}"
       error: "lỗi"

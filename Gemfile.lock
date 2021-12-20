@@ -72,6 +72,8 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    bootstrap-will_paginate (1.0.0)
+      will_paginate
     builder (3.2.4)
     capybara (3.36.0)
       addressable
@@ -124,6 +126,8 @@ GEM
       dry-schema (~> 1.8, >= 1.8.0)
     erubi (1.10.0)
     execjs (2.8.1)
+    faker (2.1.2)
+      i18n (>= 0.8)
     ffi (1.15.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -150,6 +154,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
+    pagy (5.6.6)
     parallel (1.21.0)
     parser (3.0.3.1)
       ast (~> 2.4.1)
@@ -265,6 +270,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.1.8)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yaml_db (0.7.0)
@@ -279,11 +285,14 @@ DEPENDENCIES
   bcrypt
   bootsnap (>= 1.4.4)
   bootstrap-sass (= 3.4.1)
+  bootstrap-will_paginate (= 1.0.0)
   capybara (>= 3.26)
   config
+  faker (= 2.1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2
+  pagy
   pry (~> 0.14.0)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
@@ -300,10 +309,11 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
+  will_paginate (= 3.1.8)
   yaml_db
 
 RUBY VERSION
    ruby 2.6.9p207
 
 BUNDLED WITH
-   2.2.32
+   2.2.33

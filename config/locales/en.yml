@@ -10,6 +10,11 @@ en:
   help_page: "Rails Tutorial help page"
   book: "Ruby on Rails Tutorial book"
   message: "Invalid email/password combination"
+  please_log_in: "Please log in"
+  user_deleted: "User deleted"
+  delete_fall: "Delete fail!"
+  profile_updated: "Profile updated"
+  update_fall: "Update fail!"
   layouts:
     header:
       user: "User"
@@ -28,13 +33,23 @@ en:
     help:
       content: "Get help on the %{text} at the %{link_help_page}. To get help on this sample app, see the %{link_rails_book}."
   users:
+    index:
+      title: "All users"
     new:
       title: "Sign up"
+    edit:
+      title: "Edit user"
+      content: "Update your profile"
+      change: "Change"
+    form:
       name: "Name"
       email: "Email"
       password: "Password"
       confirmation: "Confirmation"
-      submit: "Create my account"
+      submit: "Submit"
+    user:
+      sure: "You sure?"
+      delete: "Delete"
   error:
     error_valid: "The form contains %{error}"
     error: "error"
