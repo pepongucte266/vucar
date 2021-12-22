@@ -16,6 +16,7 @@ vi:
   delete_fall: "Xóa thất bại"
   profile_updated: "Cập nhật thành công"
   update_fall: "Cập nhật thất bại"
+  check_emai: "Vui lòng kiểm tra email để kích hoạt tài khoản của bạn"
   layouts:
     header:
       user: "Người dùng"
@@ -66,3 +67,9 @@ vi:
       text: "Người dùng mới? %{link_sign_up}"
       link_sign_up_text: "Đăng ký ngay! "
       remember_me: "Ghi nhớ tôi"
+    create:
+      message: "Tài khoản chưa kích hoạt. Kiểm tra email của bạn để ấn vào link."
+  user_mailer:
+    account_activation: "Chào mwufng tới Sample App! Ấn vào link dưới đây để kích hoặt tài khoản của bạn:"
+    activate: "Activate"
+    hello: "Xin chào"
