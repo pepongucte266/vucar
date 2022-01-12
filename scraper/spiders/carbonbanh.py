@@ -11,6 +11,7 @@ import numpy as np
 import yagmail
 import json
 from datetime import date
+from scrapy.selector import Selector
 import os
 
 
@@ -40,6 +41,15 @@ def extendData(curentData,oldData,todayData):
     n.to_csv('oldData.csv',index= None,encoding='utf-8-sig')
     curentData = curentData.drop_duplicates(subset=['link'])
     return curentData
+
+def count_by_model(title):
+    df = pd.read_csv(title,dtype='unicode')
+    df['price'] = pd.to_numeric(df['price'],downcast='float')
+    df['mfg'] = pd.to_numeric(df['mfg'],downcast='integer', errors='coerce')
+    df = df.query('mfg >= 2011')
+    df = df[['carmodel','mfg','price']].groupby(['carmodel','mfg']).agg( {"price":"mean","carmodel":"count"} )
+    df = df.rename(columns={'carmodel':'count'})
+    return df
 
 def filterCar(item):
     result =''
@@ -154,6 +164,39 @@ class Carchotot(scrapy.Spider):
 
         yield items
 
+class Carchoxe(scrapy.Spider):
+  name = 'carchoxe'
+  start_urls = [
+      'https://choxe.net/xe?page=%d' % i for i in range(1,142) 
+  ] 
+  def parse(self,response):
+    for link in Selector(response).xpath('//html/body/div[3]/div[1]/div/div[2]/div[4]/table/tr/td/div[1]/div/a/@href').getall():
+      yield scrapy.Request(response.urljoin(link),self.parse_carchoxe)
+
+  def parse_carchoxe(self,response):
+    items = ScraperItem()
+    model = ['C','E','G','CLK','CLA','CLS','S','R','SLK']
+    items['carmodel'] = response.xpath('/html/body/div[3]/div[1]/div[1]/div[1]/ul/li[5]/a/span/text()').extract()[0].upper().replace('CR-V','CRV')
+    if items['carmodel'] in model:
+       items['carmodel'] +=  " CLASS"
+    items['name'] = response.xpath('/html/body/div[3]/div[1]/div[1]/div[1]/ul/li[4]/a/span/text()').extract()[0].upper().replace('MERCEDES-BENZ', "MERCEDES BENZ")
+    items['price'] = response.xpath('//*[@id="col-fix"]/div/div[1]/span/text()').extract()[0].strip().split(' ')
+    if(items['price'][1]=='triệu'):
+      items['price'] = float(items['price'][0]) * 1000000
+    elif(items['price'][1]=='tỷ'):
+      items['price'] = float(items['price'][0]) * 1000000000
+    else:
+      items['price'] = items['price'][0]
+    items['location'] = response.xpath('//*[@id="col-fix"]/div/div[2]/div[2]/p/span/text()').extract()[0].upper()
+    items['status'] = response.xpath('/html/body/div[3]/div[1]/div[1]/div[4]/div[1]/b/text()').extract()[0].upper()
+    items['mfg'] = response.xpath('/html/body/div[3]/div[1]/div[1]/div[4]/div[7]/b/text()').extract()[0].strip()
+    items['interiorColor'] = ''
+    items['exteriorColor'] = response.xpath('/html/body/div[3]/div[1]/div[1]/div[4]/div[9]/b/text()').extract()[0].upper()
+    items['gearbox'] = response.xpath('/html/body/div[3]/div[1]/div[1]/div[4]/div[3]/b/text()').extract()[0].upper().strip().replace('SỐ TỰ ĐỘNG','TỰ ĐỘNG').replace('SỐ SÀN','SỐ TAY')
+    items['kilometer'] = response.xpath('//html/body/div[3]/div[1]/div[1]/div[4]/div[2]/b/text()').extract()[0].replace("km","").strip().replace(",","")
+    items['link'] = response.url
+    items['note'] = filterCar(items)
+    yield items
 
 SETTINGS = {
     'FEED_FORMAT': 'jl',
@@ -163,6 +206,7 @@ process = CrawlerProcess(SETTINGS)
 process.crawl(Car)
 process.crawl(Carbonbanh)
 process.crawl(Carchotot)
+process.crawl(Carchoxe)
 process.start()
 
 
@@ -182,11 +226,13 @@ warning = df.query('note == "price!!!" or note=="model not in brand"')
 rows = len(warning.index)
 warningTitle = '[DAILY WARNING] '+str(rows)+' rows '+str(today)+'.csv'
 warning.to_csv(warningTitle,encoding='utf-8-sig')
+titleOfcount = '[DAILY COUNT] '+ str(today) + ' .csv'
+count_by_model(title).to_csv(titleOfcount,encoding='utf-8-sig')
 
 # "jake.long.vu@m"
 receiver = ["pepongcute123@gmail.com","jake.long.vu@vucar.net"]
 body = "Hello there from VUCAR (server)"
-filename = [title,warningTitle]
+filename = [title,warningTitle,titleOfcount]
 
 yag = yagmail.SMTP("son.vu@vucar.net","pykpbkqlyjwmoegm")
 yag.send(
